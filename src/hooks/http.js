@@ -35,13 +35,9 @@ const httpReducer = (curHttpState, action) => {
 };
 
 const useHttp = () => {
-	const [httpState, dispatchHttp] = useReducer(httpReducer, {
-		loading: false,
-		error: null,
-		data: null,
-		extra: null,
-		identifier: null
-	});
+	const [httpState, dispatchHttp] = useReducer(httpReducer, initialState);
+
+	const clear = useCallback(() => dispatchHttp({ type: 'CLEAR' }), []);
 
 	const sendRequest = useCallback(
 		(url, method, body, reqExtra, reqIdentifier) => {
@@ -77,7 +73,8 @@ const useHttp = () => {
 		error: httpState.error,
 		sendRequest: sendRequest,
 		reqExtra: httpState.extra,
-		reqIdentifier: httpState.identifier
+		reqIdentifier: httpState.identifier,
+		clear: clear
 	};
 };
 

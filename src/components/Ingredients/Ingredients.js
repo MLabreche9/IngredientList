@@ -21,8 +21,15 @@ const ingredientReducer = (currentIngredients, action) => {
 
 const Ingredients = () => {
 	const [userIngredients, dispatch] = useReducer(ingredientReducer, []);
-	const { isLoading, error, data, sendRequest, reqExtra, reqIdentifier } =
-		useHttp();
+	const {
+		isLoading,
+		error,
+		data,
+		sendRequest,
+		reqExtra,
+		reqIdentifier,
+		clear
+	} = useHttp();
 
 	//const [userIngredients, setUserIngredients] = useState([]);
 	// const [isLoading, setIsLoading] = useState(false);
